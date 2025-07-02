@@ -30,7 +30,8 @@
     "src",
     "*.tsx",
     "components/**/*.ts",
-    "components/**/*.tsx"
+    "components/**/*.tsx",
+    "env.d.ts"
   ],
   "exclude": [
     "node_modules",
