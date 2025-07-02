@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { HexColorPicker } from "react-colorful";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface ColorStop {
   id: string;
@@ -341,12 +342,17 @@ const GradientGenerator: React.FC = () => {
 
   return (
     <div className="w-full max-w-6xl mx-auto p-6 space-y-6">
-      <div className="text-center">
-        <h1 className="mb-2">Gradient Generator</h1>
-        <p className="text-muted-foreground">
-          Create beautiful gradients and get the Tailwind CSS v4
-          code
-        </p>
+      <div className="flex items-center justify-between">
+        <div className="text-center flex-1">
+          <h1 className="mb-2">Gradient Generator</h1>
+          <p className="text-muted-foreground">
+            Create beautiful gradients and get the Tailwind CSS v4
+            code
+          </p>
+        </div>
+        <div className="flex-shrink-0">
+          <ThemeToggle />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
