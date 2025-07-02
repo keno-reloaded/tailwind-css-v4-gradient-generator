@@ -28,7 +28,7 @@ import {
   Check,
   Palette,
 } from "lucide-react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { HexColorPicker } from "react-colorful";
 
 interface ColorStop {
@@ -127,9 +127,9 @@ const GradientGenerator: React.FC = () => {
     const newPosition =
       colorStops.length > 0
         ? Math.round(
-            (colorStops[colorStops.length - 1].position + 100) /
-              2,
-          )
+          (colorStops[colorStops.length - 1].position + 100) /
+          2,
+        )
         : 50;
 
     setColorStops((prev) => [
