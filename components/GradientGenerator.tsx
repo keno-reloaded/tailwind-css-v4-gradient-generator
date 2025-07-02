@@ -334,7 +334,7 @@ const GradientGenerator: React.FC = () => {
       setCopied(true);
       toast.success("Copied to clipboard!");
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch (_err) {
       toast.error("Failed to copy to clipboard");
     }
   }, [tailwindGradient]);

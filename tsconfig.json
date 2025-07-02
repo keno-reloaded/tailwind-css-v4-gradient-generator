@@ -28,8 +28,15 @@
   },
   "include": [
     "src",
-    "**/*.ts",
-    "**/*.tsx"
+    "*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "*.config.ts",
+    "*.config.js"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
