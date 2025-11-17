@@ -55,6 +55,22 @@ interface ColorPickerProps {
   onChange: (color: string) => void;
 }
 
+interface GradientGeneratorProps {
+  gradientType: GradientType;
+  setGradientType: (value: GradientType) => void;
+  angle: number;
+  setAngle: (value: number) => void;
+  radialShape: "circle" | "ellipse";
+  setRadialShape: (value: "circle" | "ellipse") => void;
+  radialSize: "closest-side" | "closest-corner" | "farthest-side" | "farthest-corner";
+  setRadialSize: (value: "closest-side" | "closest-corner" | "farthest-side" | "farthest-corner") => void;
+  radialPosition: { x: number; y: number };
+  setRadialPosition: (value: { x: number; y: number } | ((prev: { x: number; y: number }) => { x: number; y: number })) => void;
+  colorStops: ColorStop[];
+  setColorStops: (value: ColorStop[] | ((prev: ColorStop[]) => ColorStop[])) => void;
+  cssGradient: string;
+}
+
 const ColorPicker: React.FC<ColorPickerProps> = ({
   color,
   onChange,
@@ -99,29 +115,23 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
   );
 };
 
-const GradientGenerator: React.FC = () => {
-  const [gradientType, setGradientType] =
-    useState<GradientType>("linear");
-  const [angle, setAngle] = useState(0);
-  const [radialShape, setRadialShape] = useState<
-    "circle" | "ellipse"
-  >("circle");
-  const [radialSize, setRadialSize] = useState<
-    | "closest-side"
-    | "closest-corner"
-    | "farthest-side"
-    | "farthest-corner"
-  >("farthest-corner");
-  const [radialPosition, setRadialPosition] = useState({
-    x: 50,
-    y: 50,
-  });
+const GradientGenerator: React.FC<GradientGeneratorProps> = ({
+  gradientType,
+  setGradientType,
+  angle,
+  setAngle,
+  radialShape,
+  setRadialShape,
+  radialSize,
+  setRadialSize,
+  radialPosition,
+  setRadialPosition,
+  colorStops,
+  setColorStops,
+  cssGradient,
+}) => {
   const [interpolationMode, setInterpolationMode] =
     useState<InterpolationMode>("none");
-  const [colorStops, setColorStops] = useState<ColorStop[]>([
-    { id: "1", color: "#3b82f6", position: 0 },
-    { id: "2", color: "#8b5cf6", position: 100 },
-  ]);
   const [copied, setCopied] = useState(false);
 
   const addColorStop = useCallback(() => {
@@ -172,31 +182,6 @@ const GradientGenerator: React.FC = () => {
       (a, b) => a.position - b.position,
     );
   }, [colorStops]);
-
-  const cssGradient = useMemo(() => {
-    const colorStopsStr = sortedColorStops
-      .map((stop) => `${stop.color} ${stop.position}%`)
-      .join(", ");
-
-    switch (gradientType) {
-      case "linear":
-        return `linear-gradient(${angle}deg, ${colorStopsStr})`;
-      case "radial":
-        const position = `${radialPosition.x}% ${radialPosition.y}%`;
-        return `radial-gradient(${radialShape} ${radialSize} at ${position}, ${colorStopsStr})`;
-      case "conic":
-        return `conic-gradient(from ${angle}deg at ${radialPosition.x}% ${radialPosition.y}%, ${colorStopsStr})`;
-      default:
-        return "";
-    }
-  }, [
-    gradientType,
-    angle,
-    radialShape,
-    radialSize,
-    radialPosition,
-    sortedColorStops,
-  ]);
 
   // Helper function to convert hex to Tailwind color name when possible
   const hexToTailwindColor = useCallback(
