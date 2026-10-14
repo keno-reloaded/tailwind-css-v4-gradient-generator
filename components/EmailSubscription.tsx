@@ -1,5 +1,6 @@
 "use client";
 
+import { submitPlusUiForm } from "./plus-ui-forms";
 import { useState } from "react";
 
 interface EmailSubscriptionProps {
@@ -24,15 +25,7 @@ export const EmailSubscription = ({ cssGradient }: EmailSubscriptionProps) => {
 
     try {
       // Send email to Mailchimp via backend API
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-        }),
-      });
+      const response = await submitPlusUiForm("newsletter", { fields: { Email: email } }, "f7502b16428ec5b28b9d87fa");
 
       const data = await response.json();
 
@@ -98,13 +91,13 @@ export const EmailSubscription = ({ cssGradient }: EmailSubscriptionProps) => {
                 } text-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900`}
               disabled={isLoading}
             >
-              {isLoading ? "Subscribing..." : isSuccess ? "Subscribed!" : "Subscribe"}
+              {isLoading ? "Subscribing..." : isSuccess ? "Check your inbox" : "Subscribe"}
             </button>
           </div>
 
           {isSuccess && (
             <p className="text-green-400 text-sm text-center">
-              Thank you for subscribing! Check your inbox soon.
+              Thank you for subscribing! Check your inbox to confirm your subscription.
             </p>
           )}
 
