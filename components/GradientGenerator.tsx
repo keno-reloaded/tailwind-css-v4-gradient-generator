@@ -327,15 +327,15 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
 
   return (
     <div className="w-full max-w-6xl mx-auto p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <div className="text-center flex-1">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="w-full text-center sm:w-auto sm:flex-1">
           <h1 className="mb-2">Gradient Generator</h1>
           <p className="text-muted-foreground">
             Create beautiful gradients and get the Tailwind CSS v4
             code
           </p>
         </div>
-        <div className="pui-tool-actions flex-shrink-0"><a className="pui-doc-link" href="/guides/">Guides</a>
+        <div className="pui-tool-actions flex-shrink-0 w-full justify-center sm:w-auto"><a className="pui-doc-link" href="#pui-guides">Guides &amp; examples ↓</a>
           <ThemeToggle />
         </div>
       </div>
