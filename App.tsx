@@ -2,8 +2,6 @@ import { useState, useMemo } from "react";
 import GradientGenerator from './components/GradientGenerator';
 import { Toaster } from './components/ui/sonner';
 import { ThemeProvider } from './components/ThemeProvider';
-import { EmailSubscription } from "./components/EmailSubscription";
-
 interface ColorStop {
   id: string;
   color: string;
@@ -65,7 +63,7 @@ export default function App() {
           setColorStops={setColorStops}
           cssGradient={cssGradient}
         />
-        <EmailSubscription cssGradient={cssGradient} />
+
         <Toaster />
       </div>
     </ThemeProvider>
