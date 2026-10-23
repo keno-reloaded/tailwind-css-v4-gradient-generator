@@ -49,3 +49,8 @@
 @media(max-width:420px){.pui-form-row{flex-direction:column}.pui-newsletter button{width:100%}}
 
 body:has(> .pui-site){display:block}
+
+.pui-site .pui-brand{display:inline-flex;align-items:center;gap:12px;margin:0 0 24px;color:#fff;text-decoration:none;line-height:1.3}
+.pui-site .pui-brand img{display:block;flex:none;width:44px;height:44px;max-width:44px;margin:0;border-radius:0}
+.pui-site .pui-brand small{display:block;margin-bottom:4px;color:#c3cddd;font-size:12px}
+.pui-site .pui-brand strong{display:block;color:#fff;font-size:18px;font-weight:700}
