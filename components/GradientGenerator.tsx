@@ -335,7 +335,7 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
             code
           </p>
         </div>
-        <div className="flex-shrink-0">
+        <div className="pui-tool-actions flex-shrink-0"><a className="pui-doc-link" href="/guides/">Guides</a>
           <ThemeToggle />
         </div>
       </div>
